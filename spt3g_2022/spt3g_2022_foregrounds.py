@@ -257,9 +257,9 @@ class SPT3G_2018_TTTEEE_Ini_Foregrounds(HasLogger):
 
         # Calculate derivative
         Cl_derivative = Dl_theory * 2 * np.pi / (ells * (ells + 1))  # Convert to Cl
-        Cl_derivative[1:-1] = 0.5 * (Cl_derivative[2:] - Cl_derivative[:-2])  # Find gradient
-        Cl_derivative[0] = Cl_derivative[1]  # Handle start approximately
-        Cl_derivative[-1] = Cl_derivative[-2]  # Handle end approximately
+        Cl_derivative = Cl_derivative.at[1:-1].set(0.5 * (Cl_derivative[2:] - Cl_derivative[:-2]))
+        Cl_derivative = Cl_derivative.at[0].set(Cl_derivative[1])  # Handle start approximately
+        Cl_derivative = Cl_derivative.at[-1].set(Cl_derivative[-2])  # Handle end approximately
 
         # Smooth over spike at lmax
         # Transition point between Boltzmann solver Cl and where the spectrum comes from a lookup table/interpolation can cause a spike in derivative

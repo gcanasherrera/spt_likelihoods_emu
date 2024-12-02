@@ -1,6 +1,9 @@
 path: null
 
 # Bandpower file
+path_to_emu: #SPT3G_Y1_EETE_bandpowers.dat
+
+# Bandpower file
 bp_file: SPT3G_Y1_EETE_bandpowers.dat
 
 # Covariance file
